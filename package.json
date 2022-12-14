@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "18.11.11",
+    "@heroicons/react": "^2.0.13",
+    "@next/font": "^13.0.6",
+    "@radix-ui/react-collapsible": "^1.0.1",
+    "@types/node": "18.11.14",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "eslint": "8.29.0",
@@ -17,6 +20,13 @@
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.3"
+    "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.20",
+    "prettier": "^2.8.1",
+    "prettier-plugin-tailwindcss": "^0.2.1",
+    "tailwindcss": "^3.2.4"
   }
 }
