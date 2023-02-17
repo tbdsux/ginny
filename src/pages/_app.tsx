@@ -2,6 +2,8 @@ import type { AppProps } from "next/app";
 import "../styles/globals.css";
 
 import { Inter } from "@next/font/google";
+import DefaultLayout from "../layout/default";
+import ProjectsProvider from "../modules/projects/context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
 
-      <Component {...pageProps} />
+      <ProjectsProvider>
+        <DefaultLayout>
+          <Component {...pageProps} />
+        </DefaultLayout>
+      </ProjectsProvider>
     </>
   );
 }
