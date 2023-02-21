@@ -8,7 +8,7 @@ interface ItemsContainerProps {
 
 const ItemsContainer = ({ provided, tasks }: ItemsContainerProps) => {
   return (
-    <ul ref={provided.innerRef} className="py-2">
+    <ul ref={provided.innerRef} className="py-2 px-3">
       {tasks.map((task, index) => (
         <TaskItem task={task} index={index} key={task.id} />
       ))}

@@ -1,12 +1,12 @@
 import { Dialog } from "@headlessui/react";
 import { FolderPlusIcon } from "@heroicons/react/24/solid";
 import { useRef } from "react";
+import { toast } from "react-toastify";
+import { mutate } from "swr";
 import BaseModal from "../../components/modal";
 import useOpen from "../../hooks/useOpen";
-import { useProjects } from "./context";
 
 const NewProject = () => {
-  const { setProjects, projects } = useProjects();
   const { isOpen, open, close } = useOpen();
 
   const inputNameRef = useRef<HTMLInputElement>(null);
@@ -18,14 +18,26 @@ const NewProject = () => {
       return;
     }
 
-    setProjects([
-      {
-        name,
-        created_at: new Date().getTime(),
-        key: String(projects.length + 1),
+    const r = await fetch("/api/projects", {
+      method: "PUT",
+      body: JSON.stringify({ name }),
+      headers: {
+        "Content-Type": "application/json",
       },
-      ...projects,
-    ]);
+    });
+
+    const d = await r.json();
+
+    if (!r.ok) {
+      // TODO: handle error
+      console.error(d);
+
+      return;
+    }
+
+    toast.success("Successfully created new project.");
+    await mutate("/api/projects");
+    close();
   };
 
   return (

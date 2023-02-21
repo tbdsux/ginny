@@ -1,8 +1,9 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { ReactNode, useState } from "react";
-import { useProjects } from "../modules/projects/context";
 import NewProject from "../modules/projects/new-project";
+import useFetchProjects from "../modules/projects/useFetchProjects";
+import useProject from "../modules/stores/useProject";
 import useSidebarStore from "../modules/stores/useSidebarStore";
 
 interface DefaultLayoutProps {
@@ -10,16 +11,18 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
-  const { projects } = useProjects();
-
   const [isOpen, setIsOpen] = useState(false);
-
+  const allProjects = useFetchProjects();
+  const initStore = useProject((state) => state.initStore);
   const openSidebar = useSidebarStore((state) => state.open);
 
   return (
-    <div className="flex items-start justify-between">
+    <div className="relative flex items-start justify-between">
       {openSidebar ? (
-        <aside className="min-h-screen w-64 bg-gray-50" aria-label="Sidebar">
+        <aside
+          className="fixed top-0 left-0 z-50 min-h-screen w-64 bg-gray-50"
+          aria-label="Sidebar"
+        >
           <div className="overflow-y-auto py-4 px-3 text-gray-500">
             <a className="mb-5 flex items-center pl-2.5" href="#">
               <span className="whitespace-nowrap font-black tracking-wider dark:text-white">
@@ -57,16 +60,30 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                     )}
                   </CollapsiblePrimitive.Trigger>
 
-                  <CollapsiblePrimitive.Content className="ml-4 flex flex-col text-xs">
-                    {projects.map((project, i) => (
-                      <button
-                        key={i}
-                        className="truncate rounded-lg py-2 px-4 text-left tracking-wide text-gray-700 hover:bg-gray-200"
-                      >
-                        {project.name}
-                      </button>
-                    ))}
-                  </CollapsiblePrimitive.Content>
+                  {allProjects ? (
+                    allProjects.error ? (
+                      <p className="text-sm">Failed to load projects...</p>
+                    ) : (
+                      <CollapsiblePrimitive.Content className="ml-4 flex flex-col text-xs font-medium">
+                        {allProjects.data.map((project, i) => (
+                          <div key={i}>
+                            <button
+                              onClick={() => {
+                                initStore(project);
+                              }}
+                              className="w-full truncate rounded-lg py-2 px-4 text-left tracking-wide text-gray-700 hover:bg-gray-200"
+                            >
+                              {project.name}
+                            </button>
+
+                            <hr className="my-0.5" />
+                          </div>
+                        ))}
+                      </CollapsiblePrimitive.Content>
+                    )
+                  ) : (
+                    <></>
+                  )}
                 </CollapsiblePrimitive.Root>
               </div>
             </div>
@@ -76,7 +93,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
         <></>
       )}
 
-      <div className="w-full">
+      <div className={`z-20 ${openSidebar ? "ml-64" : ""}`}>
         <div>{children}</div>
       </div>
     </div>
