@@ -11,6 +11,22 @@ const projectKeyApi = new Router()
     res.status(404).json({ error: true, message: "404 Not Found" });
   })
 
+  // fetch project with key
+  .get(async (req, res) => {
+    const { key } = req.query;
+    const projectKey = Array.isArray(key) ? key.join() : key;
+
+    if (!projectKey) return;
+
+    const r = await projectsBase.get<ProjectProps>(projectKey);
+    if (!r) {
+      res.status(404).json({ error: true, message: "Project not found." });
+      return;
+    }
+
+    res.json({ error: false, data: r });
+  })
+
   // update project key
   .patch(async (req, res) => {
     const { project } = req.body as RequestBody;

@@ -33,7 +33,6 @@ const SaveProject = () => {
       },
     });
 
-    const data = await r.json();
     if (!r.ok) {
       // failed request
       toast.error("Failed to update project. Please try again later...");
@@ -41,7 +40,7 @@ const SaveProject = () => {
     }
 
     toast.success("Succesfully updated project.");
-    await mutate(`/api/projects`);
+    await mutate(`/api/projects/${project.key}`);
     setSaving(false);
   };
 

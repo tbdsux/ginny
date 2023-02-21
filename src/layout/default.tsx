@@ -1,5 +1,10 @@
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  PlayIcon,
+} from "@heroicons/react/24/solid";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
+import Link from "next/link";
 import { ReactNode, useState } from "react";
 import NewProject from "../modules/projects/new-project";
 import useFetchProjects from "../modules/projects/useFetchProjects";
@@ -13,8 +18,8 @@ interface DefaultLayoutProps {
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const allProjects = useFetchProjects();
-  const initStore = useProject((state) => state.initStore);
   const openSidebar = useSidebarStore((state) => state.open);
+  const currentProject = useProject((s) => s.project);
 
   return (
     <div className="relative flex items-start justify-between">
@@ -24,11 +29,11 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           aria-label="Sidebar"
         >
           <div className="overflow-y-auto py-4 px-3 text-gray-500">
-            <a className="mb-5 flex items-center pl-2.5" href="#">
+            <Link href="/" className="mb-5 flex items-center pl-2.5">
               <span className="whitespace-nowrap font-black tracking-wider dark:text-white">
                 Ginny
               </span>
-            </a>
+            </Link>
 
             <div className="flex flex-col space-y-2">
               <NewProject />
@@ -66,15 +71,28 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                     ) : (
                       <CollapsiblePrimitive.Content className="ml-4 flex flex-col text-xs font-medium">
                         {allProjects.data.map((project, i) => (
-                          <div key={i}>
-                            <button
-                              onClick={() => {
-                                initStore(project);
-                              }}
-                              className="w-full truncate rounded-lg py-2 px-4 text-left tracking-wide text-gray-700 hover:bg-gray-200"
+                          <div key={i} className="w-full">
+                            <Link
+                              href={`/p/${project.key}`}
+                              className={`flex w-full items-center truncate rounded-md py-2 px-4 text-left tracking-wide text-gray-700 hover:bg-gray-100 ${
+                                project.key === currentProject?.key
+                                  ? "bg-gray-100"
+                                  : ""
+                              }`}
                             >
-                              {project.name}
-                            </button>
+                              {project.key === currentProject?.key ? (
+                                <>
+                                  <PlayIcon
+                                    aria-hidden="true"
+                                    className="h-4 w-4"
+                                  />
+                                </>
+                              ) : (
+                                <></>
+                              )}
+
+                              <span className="ml-2">{project.name}</span>
+                            </Link>
 
                             <hr className="my-0.5" />
                           </div>
