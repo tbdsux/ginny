@@ -12,7 +12,7 @@ const DashboardContainer = () => {
   const onDragEnd: OnDragEndResponder = (result) => {
     if (!state) return;
 
-    const { destination, source, draggableId, type } = result;
+    const { destination, source, draggableId } = result;
     if (!destination) return;
 
     if (destination.droppableId === source.droppableId) {

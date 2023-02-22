@@ -27,6 +27,11 @@ const ProjectPage = (props: ProjectPageProps) => {
     }
   );
 
+  const title =
+    data && !data.error
+      ? `${data.data.name} | Gin Web`
+      : "Loading... | Gin Web";
+
   const initStore = useProject((s) => s.initStore);
 
   useEffect(() => {
@@ -38,7 +43,7 @@ const ProjectPage = (props: ProjectPageProps) => {
   return (
     <div>
       <Head>
-        <title>{data?.error == false ? data.data.name : 'Loading...'} | Gin Web</title>
+        <title>{title}</title>
       </Head>
 
       <ProjectTitleBar />

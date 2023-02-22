@@ -16,7 +16,7 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState();
   const allProjects = useFetchProjects();
   const openSidebar = useSidebarStore((state) => state.open);
   const currentProject = useProject((s) => s.project);

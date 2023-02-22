@@ -3,6 +3,7 @@ import useProject from "../stores/useProject";
 import useSidebarStore from "../stores/useSidebarStore";
 import NewTaskGroup from "./projects/new-taskgroup";
 import SaveProject from "./projects/save-project";
+import SettingsButton from "./projects/settings/button";
 
 const ProjectTitleBar = () => {
   const selectedProject = useProject((state) => state.project);
@@ -32,6 +33,7 @@ const ProjectTitleBar = () => {
 
         {selectedProject ? (
           <div className="">
+            <SettingsButton />
             <NewTaskGroup />
             <SaveProject />
           </div>
