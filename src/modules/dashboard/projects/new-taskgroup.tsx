@@ -53,7 +53,8 @@ const NewTaskGroup = () => {
       >
         <SquaresPlusIcon aria-hidden="true" className="h-4 w-4" />
 
-        <small className="ml-1">Create Task Group</small>
+        <small className="ml-1 hidden lg:block">Create Task Group</small>
+        <small className="ml-1 hidden md:block lg:hidden">Create</small>
       </button>
 
       <BaseModal
@@ -69,7 +70,7 @@ const NewTaskGroup = () => {
           tasks as you wish.
         </Dialog.Description>
 
-        <Dialog.Panel className="mx-8 mt-6">
+        <Dialog.Panel className="mt-6 md:mx-8">
           <form
             onSubmit={(e) => {
               e.preventDefault();

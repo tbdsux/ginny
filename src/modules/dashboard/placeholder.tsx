@@ -1,12 +1,12 @@
 const DashboardPlaceholder = () => {
   return (
     <div className="z-30 overflow-auto px-4 pt-16 ">
-      <div className="ml-20 mt-20">
-        <h3 className="text-3xl font-black leading-loose text-gray-800">
+      <div className="text-center lg:ml-20 lg:mt-20 lg:text-left">
+        <h3 className="text-3xl font-black leading-normal text-gray-800">
           Gin Web - Project Management Workspace
         </h3>
-        <p className="text-lg text-gray-600">
-          Manage your project tasks, todos and other stuff
+        <p className="mt-4 text-lg text-gray-600">
+          Manage your project tasks, todos and other stuff...
         </p>
 
         <div className="mt-6">

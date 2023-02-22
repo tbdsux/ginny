@@ -53,7 +53,7 @@ const SaveProject = () => {
       >
         <CheckIcon aria-hidden="true" className="h-4 w-4" />
 
-        <small className="ml-1">{saving ? "Saving..." : "Save Project"}</small>
+        <small className="ml-1">{saving ? "Saving..." : "Save"}</small>
       </button>
     </>
   );

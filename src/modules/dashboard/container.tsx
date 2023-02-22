@@ -53,6 +53,7 @@ const DashboardContainer = () => {
     const newState: ProjectProps = {
       ...state,
       columns: {
+        ...state.columns,
         [source.droppableId]: {
           ...sourceGroup,
           taskIds: newSourceTasks,
@@ -71,9 +72,9 @@ const DashboardContainer = () => {
   }
 
   return (
-    <div className="z-30 overflow-auto px-4 pt-16">
+    <div className="z-30 w-full overflow-auto px-4 pt-16">
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex w-full items-start">
+        <div className="flex w-full flex-col items-stretch lg:flex-row lg:items-start">
           {state.columnOrder.map((col, index) => (
             <GroupColumn
               col={state.columns[col]}

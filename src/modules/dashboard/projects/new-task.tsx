@@ -75,7 +75,7 @@ const NewTask = ({ col }: NewTaskProps) => {
           Tip: Make your task short and concise.
         </Dialog.Description>
 
-        <Dialog.Panel className="mx-8 mt-6">
+        <Dialog.Panel className="mt-6 md:mx-8">
           <form onSubmit={createTask}>
             <div className="my-1 flex flex-col">
               <label htmlFor="task" className="text-sm text-gray-600">

@@ -17,10 +17,13 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
 
+  const headers: HeadersInit =
+    process.env.NODE_ENV === "development"
+      ? {}
+      : { "x-api-key": process.env.DETA_API_KEY ?? "" };
+
   const r = await fetch(`${apiUrl}/api/projects/${key}`, {
-    headers: {
-      "X-API-Key": process.env.DETA_SPACE_APP_HOSTNAME ?? "",
-    },
+    headers,
   });
   const data = await r.json();
 
@@ -32,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   if (!r.ok) {
     res.statusCode = 500;
-    throw new Error("Internal server error.");
+    throw new Error("Internal server error. " + JSON.stringify(data));
   }
 
   return {

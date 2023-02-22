@@ -36,7 +36,9 @@ const ProjectPage = (props: ProjectPageProps) => {
 
   useEffect(() => {
     if (data) {
-      if (!data.error) initStore(data.data);
+      if (data.error) return;
+
+      initStore(data.data);
     }
   }, [data, initStore]);
 

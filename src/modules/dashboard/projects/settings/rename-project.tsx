@@ -67,8 +67,8 @@ const RenameProject = () => {
               type="submit"
               className="ml-2 inline-flex items-center rounded-lg bg-gray-400 py-2 px-6 text-white duration-300 hover:bg-gray-500"
             >
-              <PencilSquareIcon aria-hidden="true" className="mr-2 h-4 w-4" />
-              <span className="text-xs font-medium uppercase">
+              <PencilSquareIcon aria-hidden="true" className="h-4 w-4" />
+              <span className="ml-2 hidden text-xs font-medium uppercase md:block">
                 {updating ? "Saving..." : "Rename"}
               </span>
             </button>

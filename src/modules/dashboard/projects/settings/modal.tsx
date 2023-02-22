@@ -5,7 +5,7 @@ import RenameProject from "./rename-project";
 
 const SettingsModalContainer = () => {
   return (
-    <Dialog.Panel className="mt-6 px-6">
+    <Dialog.Panel className="mt-6 md:px-6">
       <OrganizeGroupTasks />
 
       <hr className="my-8" />
