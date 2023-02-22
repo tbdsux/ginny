@@ -1,6 +1,6 @@
 import { Dialog } from "@headlessui/react";
 import { FolderPlusIcon } from "@heroicons/react/24/solid";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { mutate } from "swr";
 import BaseModal from "../../components/modal";
@@ -8,6 +8,7 @@ import useOpen from "../../hooks/useOpen";
 
 const NewProject = () => {
   const { isOpen, open, close } = useOpen();
+  const [creating, setCreating] = useState(false);
 
   const inputNameRef = useRef<HTMLInputElement>(null);
 
@@ -26,9 +27,12 @@ const NewProject = () => {
       },
     });
 
+    setCreating(false);
     const d = await r.json();
 
     if (!r.ok) {
+      setCreating(true);
+
       // TODO: handle error
       console.error(d);
 
@@ -37,6 +41,9 @@ const NewProject = () => {
 
     toast.success("Successfully created new project.");
     await mutate("/api/projects");
+
+    setCreating(true);
+
     close();
   };
 
@@ -78,11 +85,12 @@ const NewProject = () => {
 
             <div className="mt-4 text-right">
               <button
+                disabled={creating}
                 type="submit"
                 className="inline-flex items-center rounded-xl bg-gray-100 py-3 px-8 text-sm font-medium text-gray-700 hover:bg-gray-200"
               >
                 <FolderPlusIcon aria-hidden="true" className="mr-2 h-5 w-5" />
-                Create Project
+                {creating ? "Creating..." : "Create Project"}
               </button>
             </div>
           </form>
@@ -91,7 +99,7 @@ const NewProject = () => {
 
       <button
         onClick={open}
-        className="inline-flex w-full items-center rounded-lg bg-gray-100 py-2 px-6 text-xs text-gray-700 duration-300 hover:bg-gray-200"
+        className="flex w-full items-center justify-center rounded-lg bg-gray-200 py-2 px-6 text-xs text-gray-700 duration-300 hover:bg-gray-300"
       >
         <FolderPlusIcon aria-hidden="true" className="h-4 w-4" />
 

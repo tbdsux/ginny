@@ -29,10 +29,11 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           aria-label="Sidebar"
         >
           <div className="overflow-y-auto py-4 px-3 text-gray-500">
-            <Link href="/" className="mb-5 flex items-center pl-2.5">
-              <span className="whitespace-nowrap font-black tracking-wider dark:text-white">
-                Ginny
+            <Link href="/" className="mb-5 flex flex-col pl-2.5">
+              <span className="whitespace-nowrap font-black uppercase tracking-wider dark:text-white">
+                Gin Web
               </span>
+              <small>Projects Workspace</small>
             </Link>
 
             <div className="flex flex-col space-y-2">
@@ -69,9 +70,9 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                     allProjects.error ? (
                       <p className="text-sm">Failed to load projects...</p>
                     ) : (
-                      <CollapsiblePrimitive.Content className="ml-4 flex flex-col text-[0.8rem] font-medium">
+                      <CollapsiblePrimitive.Content className="ml-4 flex flex-col text-[0.825rem] font-medium">
                         {allProjects.data.map((project, i) => (
-                          <div key={i} className="w-full">
+                          <div key={i} className="my-1 w-full">
                             <Link
                               href={`/p/${project.key}`}
                               className={`flex w-full items-center truncate rounded-md py-2 px-4 text-left tracking-wide text-gray-700 hover:bg-gray-100 ${
