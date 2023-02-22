@@ -16,7 +16,7 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
-  const [isOpen, setIsOpen] = useState();
+  const [isOpen, setIsOpen] = useState(true);
   const allProjects = useFetchProjects();
   const openSidebar = useSidebarStore((state) => state.open);
   const currentProject = useProject((s) => s.project);
@@ -69,7 +69,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                     allProjects.error ? (
                       <p className="text-sm">Failed to load projects...</p>
                     ) : (
-                      <CollapsiblePrimitive.Content className="ml-4 flex flex-col text-xs font-medium">
+                      <CollapsiblePrimitive.Content className="ml-4 flex flex-col text-[0.8rem] font-medium">
                         {allProjects.data.map((project, i) => (
                           <div key={i} className="w-full">
                             <Link
@@ -93,8 +93,6 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
 
                               <span className="ml-2">{project.name}</span>
                             </Link>
-
-                            <hr className="my-0.5" />
                           </div>
                         ))}
                       </CollapsiblePrimitive.Content>
