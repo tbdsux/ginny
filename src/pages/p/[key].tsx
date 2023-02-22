@@ -1,8 +1,10 @@
 import { GetServerSideProps } from "next";
 import ProjectPage from "../../modules/dashboard/project-page";
 
-// TODO: update to be used with Deta Space
-const apiUrl = "http://localhost:3000";
+const apiUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : `https://${process.env.DETA_SPACE_APP_HOSTNAME}`; // env is catered for Deta Space
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
@@ -15,7 +17,11 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
 
-  const r = await fetch(`${apiUrl}/api/projects/${key}`);
+  const r = await fetch(`${apiUrl}/api/projects/${key}`, {
+    headers: {
+      "X-API-Key": process.env.DETA_SPACE_APP_HOSTNAME ?? "",
+    },
+  });
   const data = await r.json();
 
   if (r.status === 404) {
