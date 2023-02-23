@@ -12,14 +12,14 @@ const TaskItem = ({ task, index }: TaskItemProps) => {
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
-        <li
+        <div
           className="my-1 rounded-md border bg-white py-2 px-4 text-xs"
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
           {task.content}
-        </li>
+        </div>
       )}
     </Draggable>
   );

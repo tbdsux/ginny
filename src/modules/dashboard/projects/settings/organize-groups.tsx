@@ -4,7 +4,7 @@ import {
   Droppable,
   OnDragEndResponder,
 } from "@hello-pangea/dnd";
-import { ArrowsPointingOutIcon } from "@heroicons/react/24/solid";
+import { ArrowsPointingOutIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import useProject from "../../../stores/useProject";
@@ -16,6 +16,22 @@ const OrganizeGroupTasks = () => {
     s.stateProject,
     s.updateStateProject,
   ]);
+
+  const removeGroup = (col: string) => {
+    if (!state) return;
+
+    const colsEntries = Object.entries(state.columns);
+    const colsOrder = Array.from(state.columnOrder);
+
+    const newEntries = colsEntries.filter(([_, value]) => value.id !== col);
+    const newOrder = colsOrder.filter((c) => c !== col);
+
+    setState({
+      ...state,
+      columns: Object.fromEntries(newEntries),
+      columnOrder: newOrder,
+    });
+  };
 
   const onDragEnd: OnDragEndResponder = (result) => {
     if (!state) return;
@@ -74,16 +90,28 @@ const OrganizeGroupTasks = () => {
                     {(dragProvided, snapshot) => {
                       const item = (
                         <li
-                          className="my-1 inline-flex items-center rounded-lg border bg-gray-100 py-2 px-4 text-sm"
+                          className="my-1 flex items-center justify-between rounded-lg border bg-gray-100 py-2 px-4 text-sm"
                           ref={dragProvided.innerRef}
                           {...dragProvided.dragHandleProps}
                           {...dragProvided.draggableProps}
                         >
-                          <ArrowsPointingOutIcon
-                            aria-hidden="true"
-                            className="h-4 w-4"
-                          />
-                          <span className="ml-2">{state.columns[c].title}</span>
+                          <div className="inline-flex items-center">
+                            <ArrowsPointingOutIcon
+                              aria-hidden="true"
+                              className="h-4 w-4"
+                            />
+                            <span className="ml-2">
+                              {state.columns[c].title}
+                            </span>
+                          </div>
+
+                          <button
+                            onClick={() => removeGroup(c)}
+                            title="Remove Task Group"
+                            className="text-gray-600 duration-300 hover:text-red-600"
+                          >
+                            <TrashIcon aria-hidden="true" className="h-4 w-4" />
+                          </button>
                         </li>
                       );
 

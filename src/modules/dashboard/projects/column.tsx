@@ -1,5 +1,5 @@
 import { Droppable } from "@hello-pangea/dnd";
-import ItemsContainer from "./items-container";
+import TaskItem from "./item";
 import NewTask from "./new-task";
 
 interface GroupColumnProps {
@@ -16,8 +16,8 @@ interface GroupColumnProps {
 
 const GroupColumn = ({ col, tasks }: GroupColumnProps) => {
   return (
-    <div className="m-2 w-full rounded-lg border bg-white lg:w-72">
-      <div className="flex items-center justify-between p-2">
+    <div className="m-2 w-full rounded-lg border lg:w-72">
+      <div className="flex items-center justify-between rounded-t-lg bg-white p-2">
         <h4 className="text-sm">{col.title}</h4>
 
         <NewTask col={col} />
@@ -26,12 +26,20 @@ const GroupColumn = ({ col, tasks }: GroupColumnProps) => {
       <hr />
 
       <Droppable type="list" droppableId={col.id}>
-        {(provided) => (
-          <ItemsContainer
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
             {...provided.droppableProps}
-            provided={provided}
-            tasks={tasks}
-          />
+            className={`rounded-b-lg py-2 px-3 ${
+              snapshot.isDraggingOver ? "bg-stone-200" : "bg-stone-100"
+            }`}
+          >
+            {tasks.map((task, index) => (
+              <TaskItem task={task} index={index} key={task.id} />
+            ))}
+
+            {provided.placeholder}
+          </div>
         )}
       </Droppable>
     </div>
