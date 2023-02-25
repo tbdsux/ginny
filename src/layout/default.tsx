@@ -5,12 +5,15 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
+import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import NewProject from "../modules/projects/new-project";
 import useFetchProjects from "../modules/projects/useFetchProjects";
 import useProject from "../modules/stores/useProject";
 import useSidebarStore from "../modules/stores/useSidebarStore";
+
+import logoImg from "../assets/icon.png";
 
 interface DefaultLayoutProps {
   children: ReactNode;
@@ -47,11 +50,17 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
             </button>
 
             <div className="overflow-y-auto py-4 px-3 text-gray-500">
-              <Link href="/" className="mb-5 flex flex-col pl-2.5">
-                <span className="whitespace-nowrap font-black uppercase tracking-wider dark:text-white">
-                  Gin Web
-                </span>
-                <small>Projects Workspace</small>
+              <Link href="/" className="mb-5 flex items-center">
+                <div className="h-16 w-16">
+                  <Image src={logoImg} alt="Gin Web" />
+                </div>
+
+                <div className="flex flex-col">
+                  <span className="whitespace-nowrap font-black uppercase tracking-wider dark:text-white">
+                    Gin Web
+                  </span>
+                  <small>Projects Workspace</small>
+                </div>
               </Link>
 
               <div className="flex flex-col space-y-2">

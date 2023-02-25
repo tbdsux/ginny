@@ -16,7 +16,7 @@ interface GroupColumnProps {
 
 const GroupColumn = ({ col, tasks }: GroupColumnProps) => {
   return (
-    <div className="m-2 w-full rounded-lg border lg:w-72">
+    <div className="my-2 mx-0 w-full rounded-lg border lg:mx-2 lg:w-72">
       <div className="flex items-center justify-between rounded-t-lg bg-white p-2">
         <h4 className="text-sm">{col.title}</h4>
 
