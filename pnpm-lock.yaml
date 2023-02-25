@@ -15,7 +15,7 @@ specifiers:
   autoprefixer: ^10.4.13
   deep-equal: ^2.2.0
   deta: ^1.1.0
-  detajs-sm: ^0.2.1
+  detajs-sm: ^0.3.1
   eslint: 8.29.0
   eslint-config-next: 13.0.6
   nanoid: ^4.0.1
@@ -36,7 +36,7 @@ dependencies:
   '@headlessui/react': 1.7.11_biqbaboplfbrettd7655fr4n2y
   '@hello-pangea/dnd': 16.2.0_yqqa5ithnjtlkxisuaub7c4kpa
   '@heroicons/react': 2.0.16_react@18.2.0
-  '@next/font': 13.1.6
+  '@next/font': 13.2.1
   '@ootiq/next-api-router': 0.0.1_next@13.0.6
   '@radix-ui/react-collapsible': 1.0.1_biqbaboplfbrettd7655fr4n2y
   '@types/node': 18.11.14
@@ -44,7 +44,7 @@ dependencies:
   '@types/react-dom': 18.0.9
   deep-equal: 2.2.0
   deta: 1.1.0
-  detajs-sm: 0.2.1
+  detajs-sm: 0.3.1
   eslint: 8.29.0
   eslint-config-next: 13.0.6_ha6vam6werchizxrnqvarmz2zu
   nanoid: 4.0.1
@@ -163,8 +163,8 @@ packages:
       glob: 7.1.7
     dev: false
 
-  /@next/font/13.1.6:
-    resolution: {integrity: sha512-AITjmeb1RgX1HKMCiA39ztx2mxeAyxl4ljv2UoSBUGAbFFMg8MO7YAvjHCgFhD39hL7YTbFjol04e/BPBH5RzQ==}
+  /@next/font/13.2.1:
+    resolution: {integrity: sha512-4sergLt7xp9+mZuKME/xM4tLlHGTcmL7naCq0qCTcAlof6NnttshYgiLOdhSiy0NcI+/yM3BjvdEk++O96UzTg==}
     dev: false
 
   /@next/swc-android-arm-eabi/13.0.6:
@@ -748,7 +748,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001457
-      electron-to-chromium: 1.4.304
+      electron-to-chromium: 1.4.310
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
     dev: true
@@ -929,8 +929,8 @@ packages:
       - encoding
     dev: false
 
-  /detajs-sm/0.2.1:
-    resolution: {integrity: sha512-E3FKDFwN09B6C4xW9EXmAqKWzsjMWTisHv3+lbUInDSs4Z3SJVaefajCmMcT5LgexHSZv0MSo7/ptr3fnvNk7Q==}
+  /detajs-sm/0.3.1:
+    resolution: {integrity: sha512-mqdcw/DCKrUGL8pdKOddEFvjeR9v83X3jFSmwXwunYPmDoXjtCApfbAAaDgvQnrpkUiBREZK9cCmkQevENu8LA==}
     dependencies:
       cross-fetch: 3.1.5
     transitivePeerDependencies:
@@ -976,8 +976,8 @@ packages:
       esutils: 2.0.3
     dev: false
 
-  /electron-to-chromium/1.4.304:
-    resolution: {integrity: sha512-6c8M+ojPgDIXN2NyfGn8oHASXYnayj+gSEnGeLMKb9zjsySeVB/j7KkNAAG9yDcv8gNlhvFg5REa1N/kQU6pgA==}
+  /electron-to-chromium/1.4.310:
+    resolution: {integrity: sha512-/xlATgfwkm5uDDwLw5nt/MNEf7c1oazLURMZLy39vOioGYyYzLWIDT8fZMJak6qTiAJ7udFTy7JG7ziyjNutiA==}
     dev: true
 
   /emoji-regex/9.2.2:

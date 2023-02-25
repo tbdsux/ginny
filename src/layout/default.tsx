@@ -89,33 +89,35 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                         <p className="text-sm">Failed to load projects...</p>
                       ) : (
                         <CollapsiblePrimitive.Content className="ml-4 flex flex-col text-[0.825rem] font-medium">
-                          {allProjects.data.map((project, i) => (
-                            <div key={i} className="my-1 w-full">
-                              <Link
-                                href={`/p/${project.key}`}
-                                className={`flex w-full items-center truncate rounded-md py-2 px-4 text-left tracking-wide text-gray-700 hover:bg-gray-100 ${
-                                  project.key === currentProject?.key
-                                    ? "bg-gray-100"
-                                    : ""
-                                }`}
-                              >
-                                {project.key === currentProject?.key ? (
-                                  <span>
-                                    <PlayIcon
-                                      aria-hidden="true"
-                                      className="h-4 w-4"
-                                    />
-                                  </span>
-                                ) : (
-                                  <></>
-                                )}
+                          {allProjects.data
+                            .sort((a, b) => b.created_at - a.created_at)
+                            .map((project, i) => (
+                              <div key={i} className="my-1 w-full">
+                                <Link
+                                  href={`/p/${project.key}`}
+                                  className={`flex w-full items-center truncate rounded-md py-2 px-4 text-left tracking-wide text-gray-700 hover:bg-gray-100 ${
+                                    project.key === currentProject?.key
+                                      ? "bg-gray-100"
+                                      : ""
+                                  }`}
+                                >
+                                  {project.key === currentProject?.key ? (
+                                    <span>
+                                      <PlayIcon
+                                        aria-hidden="true"
+                                        className="h-4 w-4"
+                                      />
+                                    </span>
+                                  ) : (
+                                    <></>
+                                  )}
 
-                                <span className="ml-2 truncate">
-                                  {project.name}
-                                </span>
-                              </Link>
-                            </div>
-                          ))}
+                                  <span className="ml-2 truncate">
+                                    {project.name}
+                                  </span>
+                                </Link>
+                              </div>
+                            ))}
                         </CollapsiblePrimitive.Content>
                       )
                     ) : (

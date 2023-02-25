@@ -54,7 +54,7 @@ const projectKeyApi = new Router()
 
     if (!projectKey) return;
 
-    const r = await projectsBase.get<ProjectProps>(projectKey);
+    const r = await projectsBase.get(projectKey);
     if (!r) {
       res.status(404).json({ error: true, message: "Project not found." });
       return;

@@ -20,7 +20,7 @@
     "@types/react-dom": "18.0.9",
     "deep-equal": "^2.2.0",
     "deta": "^1.1.0",
-    "detajs-sm": "^0.2.1",
+    "detajs-sm": "^0.3.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
     "nanoid": "^4.0.1",

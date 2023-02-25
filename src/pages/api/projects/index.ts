@@ -1,6 +1,5 @@
 import Router from "@ootiq/next-api-router";
 import { projectsBase } from "../../../lib/deta";
-import { IProjectProps } from "../../../typings/project";
 
 interface RequestBody {
   name: string;
@@ -23,17 +22,15 @@ const projectsApi = new Router()
       return;
     }
 
-    const project: IProjectProps = {
-      name,
-      description,
-      created_at: Math.floor(new Date().getTime() / 1000),
-      tasks: {},
-      columns: {},
-      columnOrder: [],
-    };
-
     try {
-      await projectsBase.put(project);
+      await projectsBase.put({
+        name,
+        description,
+        created_at: Math.floor(new Date().getTime() / 1000),
+        tasks: {},
+        columns: {},
+        columnOrder: [],
+      });
     } catch (e) {
       res.status(500).json({ error: true, message: String(e) });
       return;
