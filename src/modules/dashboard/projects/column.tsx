@@ -35,7 +35,12 @@ const GroupColumn = ({ col, tasks }: GroupColumnProps) => {
             }`}
           >
             {tasks.map((task, index) => (
-              <TaskItem task={task} index={index} key={task.id} />
+              <TaskItem
+                colId={col.id}
+                task={task}
+                index={index}
+                key={task.id}
+              />
             ))}
 
             {provided.placeholder}
