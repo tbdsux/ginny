@@ -1,6 +1,7 @@
 import { Dialog } from "@headlessui/react";
 import DeleteProject from "./delete-project";
 import OrganizeGroupTasks from "./organize-groups";
+import PublicProject from "./public-project";
 import RenameProject from "./rename-project";
 
 const SettingsModalContainer = () => {
@@ -15,6 +16,10 @@ const SettingsModalContainer = () => {
       <hr className="my-8" />
 
       <DeleteProject />
+
+      <hr className="my-8" />
+
+      <PublicProject />
     </Dialog.Panel>
   );
 };

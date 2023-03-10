@@ -41,6 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   return {
     props: {
       data,
+      hostname: process.env.DETA_SPACE_APP_HOSTNAME ?? "",
     },
   };
 };

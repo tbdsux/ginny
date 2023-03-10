@@ -6,4 +6,5 @@ export interface ProjectProps {
   name: string;
   created_at: number;
   description?: string;
+  publicShare?: boolean;
 }

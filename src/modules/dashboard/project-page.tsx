@@ -2,7 +2,9 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import useSWR from "swr";
+import { AppProvider } from "../../context/app";
 import useMounted from "../../hooks/useMounted";
+import DefaultLayout from "../../layout/default";
 import fetcher from "../../lib/fetcher";
 import { APIResponseProps } from "../../typings/api";
 import { ProjectProps } from "../../typings/project";
@@ -12,6 +14,7 @@ import ProjectTitleBar from "./title-bar";
 
 interface ProjectPageProps {
   data: APIResponseProps<ProjectProps>;
+  hostname: string;
 }
 
 const ProjectPage = (props: ProjectPageProps) => {
@@ -43,15 +46,17 @@ const ProjectPage = (props: ProjectPageProps) => {
   }, [data, initStore]);
 
   return (
-    <div>
-      <Head>
-        <title>{title}</title>
-      </Head>
+    <DefaultLayout>
+      <AppProvider hostname={props.hostname}>
+        <Head>
+          <title>{title}</title>
+        </Head>
 
-      <ProjectTitleBar />
+        <ProjectTitleBar />
 
-      {mounted && <DashboardContainer />}
-    </div>
+        {mounted && <DashboardContainer />}
+      </AppProvider>
+    </DefaultLayout>
   );
 };
 

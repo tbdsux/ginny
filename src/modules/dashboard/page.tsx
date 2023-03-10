@@ -1,28 +1,31 @@
 import Head from "next/head";
 import { useEffect } from "react";
+import DefaultLayout from "../../layout/default";
 import useProject from "../stores/useProject";
 import DashboardPlaceholder from "./placeholder";
 
 import ProjectTitleBar from "./title-bar";
 
 const DashboardPage = () => {
-  const initStore = useProject((s) => s.initStore)
+  const initStore = useProject((s) => s.initStore);
 
   useEffect(() => {
     // reset the store if switch to home page
-    initStore(undefined)
-  }, [initStore])
+    initStore(undefined);
+  }, [initStore]);
 
   return (
-    <div>
-      <Head>
-        <title>Gin Web | Project Management Workspace</title>
-      </Head>
+    <DefaultLayout>
+      <div>
+        <Head>
+          <title>Gin Web | Project Management Workspace</title>
+        </Head>
 
-      <ProjectTitleBar />
+        <ProjectTitleBar />
 
-      <DashboardPlaceholder />
-    </div>
+        <DashboardPlaceholder />
+      </div>
+    </DefaultLayout>
   );
 };
 

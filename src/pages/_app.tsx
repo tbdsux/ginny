@@ -5,7 +5,6 @@ import { Inter } from "@next/font/google";
 import NextNProgress from "nextjs-progressbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DefaultLayout from "../layout/default";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <NextNProgress />
 
-      <DefaultLayout>
-        <Component {...pageProps} />
-      </DefaultLayout>
+      <Component {...pageProps} />
 
       <ToastContainer
         position="top-right"
