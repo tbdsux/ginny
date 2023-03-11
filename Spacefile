@@ -10,3 +10,6 @@ micros:
     public_routes:
       - "/projects"
       - "/projects/*"
+      - "/_next/*"
+      - "/*.png"
+      - "/manifest.json"

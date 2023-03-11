@@ -21,6 +21,11 @@ const ProjectPublicPage = ({ project }: ProjectPublicPageProps) => {
     }
   );
 
+  const title =
+    data && !data.error
+      ? `${data.data.name} | Gin Web`
+      : "Loading... | Gin Web";
+
   if (data?.error) {
     return <p>{data.message}</p>;
   }
@@ -28,7 +33,7 @@ const ProjectPublicPage = ({ project }: ProjectPublicPageProps) => {
   return (
     <div className="w-full">
       <Head>
-        <title>{data?.data.name} | Gin Web</title>
+        <title>{title}</title>
       </Head>
 
       <div>
