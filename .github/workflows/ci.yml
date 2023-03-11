@@ -6,6 +6,8 @@ on:
 
 jobs:
   cache-and-install:
+    env:
+      DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
     runs-on: ubuntu-latest
 
     steps:
